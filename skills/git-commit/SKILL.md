@@ -46,13 +46,23 @@ description: "自动执行 git add 和 commit，并基于代码变更生成描�
      - 准确反映主要变更内容
      - 如果有多个不相关的变更，在 message body 中分点说明
 
-5. **执行 Commit**:
+5. **用户确认**:
+   - 显示生成的 commit message
+   - 询问用户是否接受此 commit message
+   - **如果用户表达不明确（如只说"提交"、"commit"等），还需询问是否自动 push**
+   - 如果用户明确说了"只 commit"、"不要 push"等，则跳过 push 询问
+
+6. **执行 Commit**:
    - 使用生成的 message 执行 `git commit -m "message"`
    - 显示 commit 结果和 commit hash
 
-6. **确认完成**:
-   - 显示 commit 成功信息
-   - 提示用户可以使用 `git push` 推送到远程仓库
+7. **可选 Push**:
+   - 如果用户确认需要 push：
+     - 检查是否有远程仓库配置
+     - 执行 `git push` 推送到远程仓库
+     - 显示 push 结果
+   - 如果用户不需要 push：
+     - 提示用户稍后可以手动执行 `git push`
 
 ## Commit Message 格式规范
 
@@ -113,13 +123,25 @@ feat: 实现用户认证系统
 执行此 skill 时，按以下步骤操作：
 
 1. 运行 `git status --short` 检查是否有变更
-2. 如果有变更，运行 `git diff HEAD` 获取完整的变更内容
+2. 如果有变更，运行 `git diff HEAD` 获取完整的变更内容（如果是新仓库，使用 `git diff` 或直接查看文件内容）
 3. 分析 diff 输出，理解代码变更的性质和范围
 4. 生成符合规范的 commit message
-5. 显示 message 并询问用户确认
-6. 执行 `git add .`
-7. 执行 `git commit -m "<generated-message>"`
-8. 显示成功信息和后续建议
+5. 显示 message 并询问用户是否接受
+6. **判断用户意图**：
+   - 如果用户明确说了"只 commit"、"不要 push"、"先不推送"等，则标记为"仅 commit"
+   - 如果用户明确说了"commit 并 push"、"提交并推送"等，则标记为"需要 push"
+   - 如果用户表达不明确（如"提交"、"commit"、"保存修改"等），则询问："是否需要同时 push 到远程仓库？"
+7. 执行 `git add .`
+8. 执行 `git commit -m "<generated-message>"`
+9. 显示 commit 成功信息（commit hash、变更统计）
+10. **根据用户选择**：
+    - 如果需要 push：
+      - 运行 `git remote -v` 检查远程仓库配置
+      - 如果有配置，执行 `git push`
+      - 显示 push 结果
+      - 如果没有配置远程仓库，提示用户先配置 `git remote add origin <url>`
+    - 如果不需要 push：
+      - 提示："代码已成功提交到本地仓库，需要时可以运行 `git push` 推送到远程"
 
 ## 错误处理
 
@@ -127,3 +149,26 @@ feat: 实现用户认证系统
 - **不在 git 仓库**: 提示用户当前目录不是 git 仓库
 - **Commit 失败**: 显示错误信息，建议用户检查问题
 - **有冲突文件**: 提示用户先解决冲突再提交
+- **没有远程仓库**: 如果用户选择 push 但没有配置远程仓库，提示用户先运行 `git remote add origin <url>`
+- **Push 失败**: 显示错误信息（如没有权限、网络问题等），建议用户检查并稍后手动 push
+
+## 用户意图识别示例
+
+**明确要求 Push：**
+- "提交并推送"
+- "commit 并 push"
+- "提交代码到远程"
+- "保存并上传"
+
+**明确不需要 Push：**
+- "只 commit"
+- "仅提交到本地"
+- "先不推送"
+- "不要 push"
+
+**不明确表达（需要询问）：**
+- "提交代码"
+- "commit"
+- "自动提交"
+- "保存修改"
+- "提交这些改动"
