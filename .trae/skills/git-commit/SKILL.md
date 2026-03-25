@@ -23,6 +23,45 @@ description: "智能 Git 提交流程，自动分析变更、生成语义化提�
 - "保存这些修改"
 - 或任何表示想要提交代码的意图时
 
+## Commit Message 格式规范
+
+遵循 Conventional Commits 格式：
+
+```
+<type>: <subject>
+
+[optional body]
+```
+
+### Type 类型：
+
+- `feat`: 新功能
+- `fix`: 修复 bug
+- `refactor`: 重构代码
+- `style`: 代码格式调整（不影响功能）
+- `docs`: 文档更新
+- `test`: 测试相关
+- `chore`: 构建工具、依赖等杂项
+- `perf`: 性能优化
+
+** 注意：<type> 必须从上述类型中选择一个，若实在无法确定类型请选择 `chore` **
+
+### 示例：
+
+简单变更：
+```
+feat: 添加用户登录功能
+```
+
+复杂变更：
+```
+feat: 实现用户认证系统
+
+- 添加登录和注册页面
+- 实现 JWT token 认证
+- 添加密码加密功能
+```
+
 ## 工作流程
 
 Step1: 检查 Git 状态
@@ -60,42 +99,6 @@ Step6（可选步骤）: 提交到远程仓库
      - 显示 push 结果
    - 如果用户不需要 push：
      - 提示用户稍后可以手动执行 `git push`
-
-## Commit Message 格式规范
-
-遵循 Conventional Commits 格式：
-
-```
-<type>: <subject>
-
-[optional body]
-```
-
-### Type 类型：
-- `feat`: 新功能
-- `fix`: 修复 bug
-- `refactor`: 重构代码
-- `style`: 代码格式调整（不影响功能）
-- `docs`: 文档更新
-- `test`: 测试相关
-- `chore`: 构建工具、依赖等杂项
-- `perf`: 性能优化
-
-### 示例：
-
-简单变更：
-```
-feat: 添加用户登录功能
-```
-
-复杂变更：
-```
-feat: 实现用户认证系统
-
-- 添加登录和注册页面
-- 实现 JWT token 认证
-- 添加密码加密功能
-```
 
 ## 注意事项
 
