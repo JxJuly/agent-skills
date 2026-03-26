@@ -7,54 +7,25 @@ permissions:
 on:
   workflow_dispatch:
     inputs:
-      version_type:
-        description: 'Version type (e.g. patch, minor, major, auto)'
+      version_bump:
+        description: 'Version type (leave empty for auto)'
         required: false
         type: choice
         options:
           - patch
           - minor
           - major
-          - auto
-        default: auto
+          - ''
+        default: ''
 
 jobs:
-  release:
+  publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Git checkout
-        uses: actions/checkout@v4
+      - name: Setup
+        uses: JxJuly/github-actions/setup-environment@v0.0.4
+
+      - name: Release
+        uses: JxJuly/github-actions/release-it@v0.0.4
         with:
-          fetch-depth: 0
-
-      - name: Git config
-        run: |
-          git config user.name "${GITHUB_ACTOR}"
-          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-        shell: bash
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 24
-          registry-url: https://registry.npmjs.org/
-
-      - name: Set up pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Install dependencies
-        run: pnpm add -g release-it @release-it/conventional-changelog
-
-      - name: Release it
-        run: |
-          echo "Version type: ${{ github.event.inputs.version_type }}"
-          release-it \
-            --ci \
-            --npm.skipChecks \
-            --github.release \
-            --plugins.@release-it/conventional-changelog.preset.name=conventionalcommits \
-            --plugins.@release-it/conventional-changelog.infile=CHANGELOG.md \
-            ${{ github.event.inputs.version_type }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_CONFIG_PROVENANCE: true
+          version_bump: ${{ github.event.inputs.version_bump }}
