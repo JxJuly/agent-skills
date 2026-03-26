@@ -1,6 +1,6 @@
 {
   "name": "@july_cm/agent-skills",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Agent skills",
   "author": "July",
   "main": "index.js",
@@ -31,7 +31,7 @@
   "type": "module",
   "license": "MIT",
   "dependencies": {
-        "@inquirer/prompts": "^8.2.0",
+    "@inquirer/prompts": "^8.2.0",
     "@july_cm/logger": "^1.0.0",
     "fs-extra": "^11.3.3",
     "tsx": "^4.21.0"
