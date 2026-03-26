@@ -29,3 +29,4 @@ jobs:
         uses: JxJuly/github-actions/release-it@v0.0.4
         with:
           version_bump: ${{ github.event.inputs.version_bump }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
