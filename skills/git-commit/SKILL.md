@@ -9,7 +9,7 @@ description: "当用户说'提交代码'、'commit'、'push'时，自动分析�
 
 ## 流程
 
-1. 运行脚本收集信息：`bash /mnt/skills/user/git-commit/scripts/git-status.sh`（输出 JSON，含 branch/remote/status/diff_content。有 `error` 字段时按 Troubleshooting 处理）
+1. 运行脚本收集信息：`bash ./scripts/git-status.sh`（输出 JSON，含 branch/remote/status/diff_content。有 `error` 字段时按 Troubleshooting 处理）
 2. 分析 diff_content，判断变更类型和范围
 3. **新分支（可选）**：默认跳过。仅当①用户要求，或②在 main/master 上且变更大（>5 文件或跨多模块）时，建议切分支（如 `feat/create-new-skill`），确认后执行 `git checkout -b`
 4. **安全检查**：stage 前扫描文件列表和 diff 内容，发现敏感文件或密钥则**停止并询问用户**

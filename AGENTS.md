@@ -4,7 +4,7 @@ This file provides guidance to AI coding agents (Claude Code, Cursor, Copilot, e
 
 ## Repository Overview
 
-A collection of skills for Claude.ai and Claude Code for working with Vercel deployments. Skills are packaged instructions and scripts that extend Claude's capabilities.
+A collection of skills for AI coding agents (Claude, Cursor, Copilot, etc.). Skills are packaged instructions and scripts that extend any AI agent's capabilities.
 
 ## Creating a New Skill
 
@@ -45,7 +45,7 @@ description: {One sentence describing when to use this skill. Include trigger ph
 ## Usage
 
 ```bash
-bash /mnt/skills/user/{skill-name}/scripts/{script}.sh [args]
+bash ./scripts/{script}.sh [args]
 ```
 
 **Arguments:**
