@@ -26,6 +26,7 @@ jobs:
         uses: JxJuly/github-actions/setup-environment@v0.0.4
 
       - name: Release
-        uses: JxJuly/github-actions/release-it@v0.0.4
+        uses: JxJuly/github-actions/release-it@v0.0.5
         with:
           version_bump: ${{ github.event.inputs.version_bump }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
