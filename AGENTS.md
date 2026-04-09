@@ -6,6 +6,12 @@ This file provides guidance to AI coding agents (Claude Code, Cursor, Copilot, e
 
 A collection of skills for AI coding agents (Claude, Cursor, Copilot, etc.). Skills are packaged instructions and scripts that extend any AI agent's capabilities.
 
+## Development Workflow
+
+- **Always create and update skills in the `skills/` directory** — this is the source-of-truth for the repository.
+- **Only copy a skill to `.trae/skills/` when you need to apply it to this repository.** The `.trae/` directory is the IDE runtime directory for loading skills and is not managed as source code.
+- After modifying a skill in `skills/`, manually sync the copy under `.trae/skills/` if one exists.
+
 ## Creating a New Skill
 
 ### Directory Structure

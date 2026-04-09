@@ -1,9 +1,8 @@
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-import { select, confirm } from '@inquirer/prompts';
+import { confirm, select } from '@inquirer/prompts';
 import { logger } from '@july_cm/logger';
 import fs from 'fs-extra';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 import { Framework } from './constants';
 
