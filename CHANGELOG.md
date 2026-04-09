@@ -1,5 +1,19 @@
 # Changelog | 变更日志
 
+## [0.0.3](https://github.com/JxJuly/agent-skills/compare/v0.0.2...v0.0.3) (2026-04-09)
+
+### 🌟 Features | 新功能
+
+* 新增 package-json-fix skill ([924a714](https://github.com/JxJuly/agent-skills/commit/924a7142c6cc8b01f89aae2d44f6b2d46fdda425))
+
+### 🔄 Refactor | 重构代码
+
+* 将脚本路径改为相对路径，使技能不依赖特定平台 ([22f06a3](https://github.com/JxJuly/agent-skills/commit/22f06a319ed163df72d3c102b28828346a8ed4d2))
+
+### 🔧 Chore | 日常维护
+
+* 升级 release-it action 至 v0.0.5 并传入 github_token ([746641e](https://github.com/JxJuly/agent-skills/commit/746641efdc188883fc4429e619260e521bcf1dfd))
+
 ## 0.0.2 (2026-03-26)
 
 ### 🌟 Features | 新功能
