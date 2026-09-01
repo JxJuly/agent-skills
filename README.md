@@ -34,6 +34,7 @@ npx skills add JxJuly/agent-skills --global
 
 - `git-commit` - Analyze git changes, generate a Conventional Commit message, commit safely, and optionally push.
 - `package-json-fix` - Analyze and fix `package.json` field order, missing standard fields, and non-standard fields.
+- `whistle-use` - Use Whistle Local Agent API to inspect Network/WS traffic and manage Rules, Values, Plugins, HTTPS, certificates, and temp files when users mention whistle or ws2.
 
 ## Repository Layout
 
@@ -78,3 +79,9 @@ cp -r skills/{skill-name} ~/.claude/skills/
 ```
 
 For agents that support project knowledge, add the relevant `SKILL.md` content and any needed reference files to the project context.
+
+## Development
+
+```bash
+npx skills add ./skills/{skill-name} -g -a codex
+```
